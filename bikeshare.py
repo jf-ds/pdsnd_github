@@ -1,3 +1,6 @@
+# Adding comments as documentation 1
+# Adding another comment as documentation 2
+
 import time
 import pandas as pd
 import numpy as np
@@ -10,8 +13,8 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'newyorkcity': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-city_abbrev = {'chi':'Chicago', 
-              'new':'New York City', 
+city_abbrev = {'chi':'Chicago',
+              'new':'New York City',
               'was':'Washington'}
 
 month_abbrev = {'jan':'January',
@@ -21,7 +24,7 @@ month_abbrev = {'jan':'January',
              'may':'May',
              'jun':'June',
              'all':'All'}
-             
+
 wkday_abbrev = {'sun':'Sunday',
                 'mon':'Monday',
                 'tue':'Tuesday',
@@ -89,7 +92,7 @@ def get_filters():
         (str) month - name of the month to filter by, or 'all' to apply no month filter
         (str) day - name of the day of week to filter by, or 'all' to apply no day filter
     """
-    
+
     ##### Initializing variables
     city_choose = '_'
     city = '_'
@@ -98,7 +101,7 @@ def get_filters():
     wkday_choose = '_'
     wkday = '_'
     print('Hello! Let\'s explore some US bikeshare data!')
-    
+
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while city_choose not in ['chi','new','was']:
         city_choose = str(input('\nWhich city would you like to explore? \nPlease enter:\n- Chicago \n- New York \n- Washington \n')).lower()[:3]
@@ -117,7 +120,7 @@ def get_filters():
         wkday_choose = str(input('\nWhich day of week would you like to explore? \n(Please type in a day of week or all)\n')).lower()[:3]
     wkday = wkday_abbrev[wkday_choose]
     print('You chose ',wkday)
-    
+
     print('-'*40)
     return city, month, wkday
 
@@ -178,14 +181,14 @@ def time_stats(df):
     df['col_hour'] = pd.DatetimeIndex(df['Start Time']).hour
     df.replace({'col_month':num_month}, inplace=True)
     df.replace({'col_wkday':num_wkday}, inplace=True)
-    
+
     # TO DO: display the most common month
     citymonth = df['col_month'].tolist()
     if len(citymonth) == 0:
         print('Sorry, that month isn\'t in the data')
     else:
         most_common('month', citymonth)
-    
+
     # TO DO: display the most common day of week
     citywkday = df['col_wkday'].tolist()
     if len(citywkday) == 0:
@@ -213,7 +216,7 @@ def station_stats(df):
     Prints statements on most common:
         Starting Station
         Ending Station
-        Route    
+        Route
     """
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
@@ -224,7 +227,7 @@ def station_stats(df):
     # Most common START STATION
     citystart = df['Start Station'].tolist()
     most_common('starting station', citystart)
-    
+
     # Most common END STATION
     cityend = df['End Station'].tolist()
     most_common('ending station', cityend)
@@ -241,7 +244,7 @@ def station_stats(df):
     top_route = cityroute_group[cityroute_group['it_ct'] == ct_max]
     top_route_1 = top_route.iloc[[0]]['it_ct'].to_string().split('\n')
     top_route_2 = ''.join(top_route_1[1:len(top_route_1)]).split(' ')
-    top_route_3 = ' '.join(top_route_2[0:len(top_route_2)-1]).strip()    
+    top_route_3 = ' '.join(top_route_2[0:len(top_route_2)-1]).strip()
     print('The most common route is ',top_route_3)
 
     print('\nThis took %s seconds.' % (time.time() - start_time))
@@ -253,7 +256,7 @@ def trip_duration_stats(df):
     Displays statistics on the total and average trip duration.
     Takes in dataframe <df>
     Returns nothing
-    Prints statements on sum and average travel duration    
+    Prints statements on sum and average travel duration
     """
 
     print('\nCalculating Trip Duration...\n')
@@ -289,7 +292,7 @@ def user_stats(df):
     # TO DO: Display counts of user types
     user_type = df['User Type'].tolist()
     com_dist = pd.DataFrame([[x,user_type.count(x)] for x in set(user_type)])
-    com_dist.columns = ['User_Type', 'Count']    
+    com_dist.columns = ['User_Type', 'Count']
 
     # TO DO: Display counts of gender
     dflist = list(df)
@@ -298,7 +301,7 @@ def user_stats(df):
         user_type = df['Gender']
         user_type = user_type.dropna().tolist()
         com_dist = pd.DataFrame([[x,user_type.count(x)] for x in set(user_type)])
-        com_dist.columns = ['Gender', 'Count']    
+        com_dist.columns = ['Gender', 'Count']
         print(com_dist)
     else:
         print('Sorry, gender data is not available')
@@ -307,7 +310,7 @@ def user_stats(df):
     # TO DO: Display earliest, most recent, and most common year of birth
     if 'Birth Year' in dflist:
         print('\nBirth Year data is available')
-        print('The earliest birth year is',int(df['Birth Year'].min())) 
+        print('The earliest birth year is',int(df['Birth Year'].min()))
         print('The earliest birth year is',int(df['Birth Year'].max()))
         citybyear = df['Birth Year'].dropna().tolist()
         pd.options.display.float_format = '{:.0f}'.format
