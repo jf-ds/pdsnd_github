@@ -341,9 +341,9 @@ def main():
         df = load_data(city, month, wkday)
 
         time_stats(df)
-        station_stats(df)
-        trip_duration_stats(df)
-        user_stats(df)
+        #station_stats(df)
+        #trip_duration_stats(df)
+        #user_stats(df)
 
         restart = str(input('\nWould you like to restart?\nPlease type in Yes\nOtherwise, we will end\n'))
         if restart.lower() != 'yes':
