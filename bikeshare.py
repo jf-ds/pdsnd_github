@@ -335,6 +335,7 @@ def user_stats(df):
     print('\nThis took %s seconds.' % (time.time() - start_time))
     print('-'*40)
 
+##### Adding another line to test merging
 
 def main():
     while True:
