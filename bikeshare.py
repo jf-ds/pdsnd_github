@@ -82,6 +82,18 @@ def most_common(item_type, city_com):
     resultstring = 'The most common ' + item_type + ' is' + mos_com
     print(resultstring)
 
+##### FUNCTION FOR REUSE
+def most_common2(item_type, city_com):
+"""
+This was just added to make 1 refactoring change
+"""
+com_dist = pd.DataFrame([[x,city_com.count(x)] for x in set(city_com)])
+com_dist.columns = ['com_name', 'com_ct']
+com_dist1 = com_dist.sort_values(by = ['com_ct'], ascending = False)
+mos_com = com_dist1.iloc[[0]]['com_name'].to_string().split(' ',1)[1]
+resultstring = 'The most common ' + item_type + ' is' + mos_com
+print(resultstring)
+
 ##### BODY FUNCTIONS
 def get_filters():
     """
@@ -330,9 +342,9 @@ def main():
         df = load_data(city, month, wkday)
 
         time_stats(df)
-        station_stats(df)
-        trip_duration_stats(df)
-        user_stats(df)
+        #station_stats(df)
+        #trip_duration_stats(df)
+        #user_stats(df)
 
         restart = str(input('\nWould you like to restart?\nPlease type in Yes\nOtherwise, we will end\n'))
         if restart.lower() != 'yes':
