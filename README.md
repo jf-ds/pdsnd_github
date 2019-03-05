@@ -6,6 +6,7 @@ Bikeshare
 
 ### Description
 Analyzing bikeshare info of 3 cities
+Added 2 comment lines to bikeshare.py
 
 ### Files used
 bikeshare.py
